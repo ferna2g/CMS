@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Registro</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h2>Registro</h2>
+          <!-- Formulario -->
+          {% csrf_token %}
+          <form method="post">
+              {{ forms }}
+              <button type="submit" class="btn btn-primary">Registrar</button>
+          </form>
+        </body>
+        </div>
+      </div>
+    </div>
+</html>

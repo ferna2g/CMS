@@ -4,7 +4,7 @@ from django.shortcuts import redirect   #libreria para realizar la redireccion l
 from django.contrib import messages   #libreria para mostrar mensajes del servidor
 from django.contrib.auth import login, logout
 from django.contrib.auth import authenticate   #libreria que nos permite validar los campos con el servidor
-
+from .forms import RegisterForm
 
 # Create your views here.
 def index(request):
@@ -34,3 +34,10 @@ def login_view(request):
 def logout_view(request):
     messages.success(request, 'Sesion cerrada exitosamente')
     return redirect('login_v')
+
+def register_view(request):
+    form = RegisterForm()   #instanciamos a la clase que se encuentra en forms
+
+    return render(request, 'users/register.html', {
+        'forms': form    #nombre con el que llamaremos en nuestr html
+    })
