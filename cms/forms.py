@@ -16,6 +16,11 @@ class RegisterForm(forms.Form):
                                 widget = forms.PasswordInput(attrs={
                                 'class':'form-control'
                                 }))
+    password2 = forms.CharField(label='Confirmar Password',
+                                required=True,
+                                widget= forms.PasswordInput(attrs={
+                                'class': 'form-control'
+                                }))
 
 
     def clean_username(self):
@@ -33,3 +38,9 @@ class RegisterForm(forms.Form):
             raise forms.ValidationError('El email ya se encuentra registrado')
 
         return email
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        if cleaned_data.get('password2') != cleaned_data.get('password'):
+            self.add_error('password2', 'El password no coincide')
