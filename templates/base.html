@@ -9,14 +9,7 @@
   </head>
   <body>
       <div class="container">
-        {% if messages %}
-          {% for message in messages %}
-              <div class="alert {% if message.tags == 'success'%}alert-success{% else %}alert-danger{% endif %}">
-                <button type="button" class="close" data-dismiss="alert">X</button>
-                  {{ message }}
-              </div>
-          {% endfor %}
-        {% endif %}
+          {% include 'message.html' %}
         <div class="row">
           {% block content %}
 
