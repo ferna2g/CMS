@@ -2,7 +2,8 @@ from django.shortcuts import render  #libreria para realizar render del template
 from django.shortcuts import redirect   #libreria para realizar la redireccion luego del login
 
 from django.contrib import messages   #libreria para mostrar mensajes del servidor
-from django.contrib.auth import login, logout
+from django.contrib.auth import login
+from django.contrib.auth import logout
 from django.contrib.auth import authenticate   #libreria que nos permite validar los campos con el servidor
 from .forms import RegisterForm   #importamos el formulario
 
@@ -17,6 +18,9 @@ def index(request):
     })
 
 def login_view(request):
+    #bloqueando las urls
+    if request.user.is_authenticated:
+        return redirect('principal')
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -36,22 +40,27 @@ def login_view(request):
     })
 
 def logout_view(request):
+    logout(request)
     messages.success(request, 'Sesion cerrada exitosamente')
     return redirect('login_v')
 
 def register_view(request):
+    #bloqueando las urls
+    if request.user.is_authenticated:
+        return redirect('principal')
+
     form = RegisterForm(request.POST or None)   #instanciamos a la clase que se encuentra en forms
 
     #leer los datos del formulario s
     if request.method == 'POST' and form.is_valid():
-        username = form.cleaned_data.get('username')
-        email = form.cleaned_data.get('email')
-        password = form.cleaned_data.get('password')
+        #username = form.cleaned_data.get('username')
+        #email = form.cleaned_data.get('email')
+        #password = form.cleaned_data.get('password')
 
-        user = User.objects.create_user(username, email, password)  #crear usuarios pero no como admin
+        user = form.save()#User.objects.create_user(username, email, password)  #crear usuarios pero no como admin
         if user:
             login(request, user)
-            messages.success(request, user)
+            messages.success(request, 'Usuario creado exitosamente')
             return redirect('principal')
 
     return render(request, 'users/register.html', {

@@ -1,23 +1,29 @@
+{% url 'login_v' as login_v %}
+{% url 'register_v' as register_v %}
+
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-  <a href="#" class="navbar-brand">CMS</a>
+  <a href="{% url 'principal' %}" class="navbar-brand">CMS</a>
 
   <button type="button" name="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navb">
       <span class="navbar-toggler-icon"></span>
   </button>
 
   <div id="navb" class="navbar-collapse collapse hide">
+
     <ul class="nav navbar-nav ml-auto">
-      <li class="navbar-item">
-        <a href="#" class="nav-link">Login</a>
-      </li>
+      {% if user.is_authenticated %}
+        <li class="navbar-item">
+          <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+        </li>
+      {% else %}
+        <li class="navbar-item {% if request.path == login_v %}active{%endif%}">
+          <a href="{{ login_v }}" class="nav-link">Login</a>
+        </li>
 
-      <li class="navbar-item">
-        <a href="#" class="nav-link">Registro</a>
-      </li>
-
-      <li class="navbar-item">
-        <a href="#" class="nav-link">Logout</a>
-      </li>
+        <li class="navbar-item {% if request.path == register_v %}active{% endif %}">
+          <a href="{{ register_v }}" class="nav-link">Registro</a>
+        </li>
+      {% endif %}
     </ul>
   </div>
 </nav>
