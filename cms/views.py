@@ -36,7 +36,13 @@ def logout_view(request):
     return redirect('login_v')
 
 def register_view(request):
-    form = RegisterForm()   #instanciamos a la clase que se encuentra en forms
+    form = RegisterForm(request.POST or None)   #instanciamos a la clase que se encuentra en forms
+
+    #leer los datos del formulario s
+    if request.method == 'POST' and form.is_valid():
+        username = form.cleaned_data.get('username')
+        email = form.cleaned_data.get('email')
+        password = form.cleaned_data.get('password')
 
     return render(request, 'users/register.html', {
         'forms': form    #nombre con el que llamaremos en nuestr html
