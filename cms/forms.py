@@ -16,3 +16,20 @@ class RegisterForm(forms.Form):
                                 widget = forms.PasswordInput(attrs={
                                 'class':'form-control'
                                 }))
+
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError('El usuario ya se encuentra en uso')
+
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError('El email ya se encuentra registrado')
+
+        return email

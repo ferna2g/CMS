@@ -17,6 +17,10 @@
               <div class="form-group">
                 {{ field.label_tag}}
                 {{ field}}
+
+                {% if field.erros %}
+                  {{ field.erros }}
+                {% endif %}
               </div>
             {% endfor %}
             <!--
