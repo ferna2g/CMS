@@ -10,9 +10,9 @@
         <div class="col">
           <h2>Registro</h2>
           <!-- Formulario -->
-          {% csrf_token %}
-          <form method="post">
 
+          <form method="post">
+              {% csrf_token %}
             {% for field in forms %}
               <div class="form-group">
                 {{ field.label_tag}}

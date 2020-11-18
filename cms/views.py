@@ -4,7 +4,11 @@ from django.shortcuts import redirect   #libreria para realizar la redireccion l
 from django.contrib import messages   #libreria para mostrar mensajes del servidor
 from django.contrib.auth import login, logout
 from django.contrib.auth import authenticate   #libreria que nos permite validar los campos con el servidor
-from .forms import RegisterForm
+from .forms import RegisterForm   #importamos el formulario
+
+from django.contrib.auth.models import User   #libreria para crear nuevos usuarios
+
+
 
 # Create your views here.
 def index(request):
@@ -43,6 +47,12 @@ def register_view(request):
         username = form.cleaned_data.get('username')
         email = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password')
+
+        user = User.objects.create_user(username, email, password)  #crear usuarios pero no como admin
+        if user:
+            login(request, user)
+            messages.success(request, user)
+            return redirect('principal')
 
     return render(request, 'users/register.html', {
         'forms': form    #nombre con el que llamaremos en nuestr html
