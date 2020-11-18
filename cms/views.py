@@ -47,7 +47,6 @@ def register_view(request):
         username = form.cleaned_data.get('username')
         email = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password')
-        password2 = form.cleaned_data.get('password2')
 
         user = User.objects.create_user(username, email, password)  #crear usuarios pero no como admin
         if user:
