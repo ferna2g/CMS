@@ -14,7 +14,7 @@ from django.contrib.auth.models import User   #libreria para crear nuevos usuari
 # Create your views here.
 def index(request):
     return render(request, 'index.html', {
-        'login':'login.html'
+        #'login':'login.html'
     })
 
 def login_view(request):
@@ -31,7 +31,7 @@ def login_view(request):
         if user:
             login(request, user)
             messages.success(request, 'Bienvenido {}'.format(user.username))
-            return redirect('principal')
+            return redirect('dashboard_v') #estaba como redirect
         else:
             messages.error(request, 'Usuario o Contrase;a incorrecta')
 
@@ -66,3 +66,11 @@ def register_view(request):
     return render(request, 'users/register.html', {
         'forms': form    #nombre con el que llamaremos en nuestr html
     })
+
+def dashboard_view(request):
+    if request.user.is_authenticated:
+        return render(request, 'admin/dashboard.html', {
+
+        })
+    else:
+        return redirect('principal')

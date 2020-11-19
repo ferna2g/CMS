@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+      <!-- Favicons -->
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+
+<!--    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Mi Blog</a>
+  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="#">Logout</a>
+    </li>
+  </ul>
+</nav>
+-->
+<div class="container-fluid">
+  <div class="row">
+    <!--<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'principal' %}">
+              <span data-feather="file"></span>
+              Inicio
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+              <span data-feather="home"></span>
+              Dashboard <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file"></span>
+              Publicaciones
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart"></span>
+              Usuarios
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users"></span>
+              Comentarios
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="bar-chart-2"></span>
+              Personalizar
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav> -->
+    <nav id="side-nav" class="side_nav p-0">
+      <div class="d-flex justify-content-end justify-content-lg-start align-items-center side__nav__head">
+        <h1 class="m-0 pl-3 d-none d-lg-block side__nav--title"><?php echo NOMBRE_BLOG; ?></h1>
+        <div class="d-lg-none mr-3 open-menu">
+          <input id="open-close-nav" class="d-none" type="checkbox">
+          <label for="open-close-nav" class="m-0">
+            <i class="fas fa-ellipsis-h"></i>
+          </label>
+        </div>
+      </div>
+      <ul class="m-0 p-0">
+        <li class="mt-1 mb-1 active">
+          <a href="#" class="d-flex align-items-center side__nav--link">
+            <i class="fas fa-home side__nav--icon nav-item-icon"></i>Inicio
+          </a>
+        </li>
+        <li class="mt-1 mb-1">
+          <a href="#" class="d-flex align-items-center side__nav--link">
+            <i class="fas fa-tachometer-alt side__nav--icon nav-item-icon"></i>Dashboard
+          </a>
+        </li>
+        <li class="mt-1 mb-1">
+          <a href="index.php?page=publicar" class="d-flex align-items-center side__nav--link">
+            <i class="fas fa-pencil-alt side__nav--icon nav-item-icon"></i>Publicaciones
+          </a>
+        </li>
+
+        <li class="mt-1 mb-1">
+          <a href="#" class="d-flex align-items-center side__nav--link">
+            <i class="fas fa-users side__nav--icon nav-item-icon"></i>Usuarios
+          </a>
+        </li>
+
+        <li class="mt-1 mb-1">
+          <a href="#" class="d-flex align-items-center side__nav--link">
+            <i class="fas fa-comments side__nav--icon nav-item-icon"></i>Comentarios
+          </a>
+        </li>
+
+        <li class="mt-1 mb-1">
+            <a href="#" class="d-flex align-items-center side__nav--link">
+                <i class="fas fa-bullseye side__nav--icon nav-item-icon"></i>
+                Personalizar
+            </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<script src="dashboard.js"></script></body>
+
+{% endblock %}
