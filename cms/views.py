@@ -9,12 +9,16 @@ from .forms import RegisterForm   #importamos el formulario
 
 from django.contrib.auth.models import User   #libreria para crear nuevos usuarios
 
+from categorias.models import Categories
 
 
 # Create your views here.
 def index(request):
+    categories = Categories.objects.all()
+
     return render(request, 'index.html', {
         #'login':'login.html'
+        'categorias': categories
     })
 
 def login_view(request):
